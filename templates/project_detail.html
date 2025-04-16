@@ -1,4 +1,3 @@
-<!-- templates/project_detail.html -->
 {% extends "base.html" %}
 
 {% block title %}案件詳細{% endblock %}
@@ -32,7 +31,10 @@
             <td>{{ delivery.get_status_display }}</td>
             <td>
               {% if delivery.driver %}
-                {{ delivery.driver.name }}（{{ delivery.driver.phone }}）
+                <a href="{% url 'driver_project_list' delivery.driver.pk %}">
+                  {{ delivery.driver.name }}
+                </a>
+                （{{ delivery.driver.phone }}）
               {% else %}
                 未割り当て
               {% endif %}
