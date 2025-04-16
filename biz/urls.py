@@ -4,6 +4,6 @@ from .views import ProjectListView, ProjectDetailView
 
 
 urlpatterns = [
-    path('/', ProjectListView.as_view(), name='project_list'),
+    path('', ProjectListView.as_view(), name='project_list'),
     path('projects/<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
     ]
