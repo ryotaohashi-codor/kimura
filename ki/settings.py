@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'ki.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgresql://postgres:postgres@localhost:5432/ki',
         conn_max_age=600
     )
 }
