@@ -47,4 +47,9 @@
 {% else %}
   <p class="text-muted">まだ運送情報がありません。</p>
 {% endif %}
+
+<div class="mt-4">
+  <a href="{% url 'project_list' %}" class="btn btn-secondary">← 案件一覧へ</a>
+</div>
+
 {% endblock %}
