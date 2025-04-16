@@ -1,0 +1,48 @@
+<!-- templates/project_detail.html -->
+{% extends "base.html" %}
+
+{% block title %}案件詳細{% endblock %}
+
+{% block content %}
+<h2>{{ object.title }}</h2>
+
+<ul class="list-group mb-4">
+  <li class="list-group-item"><strong>顧客名：</strong> {{ object.customer.name }}</li>
+  <li class="list-group-item"><strong>説明：</strong> {{ object.description }}</li>
+  <li class="list-group-item"><strong>開始日：</strong> {{ object.start_date }}</li>
+  <li class="list-group-item"><strong>終了日：</strong> {{ object.end_date|default:"未定" }}</li>
+</ul>
+
+<h3>個別運送一覧</h3>
+
+{% if object.deliveries.all %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>配送日</th>
+          <th>ステータス</th>
+          <th>運転手</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for delivery in object.deliveries.all %}
+          <tr>
+            <td>{{ delivery.delivery_date }}</td>
+            <td>{{ delivery.get_status_display }}</td>
+            <td>
+              {% if delivery.driver %}
+                {{ delivery.driver.name }}（{{ delivery.driver.phone }}）
+              {% else %}
+                未割り当て
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-muted">まだ運送情報がありません。</p>
+{% endif %}
+{% endblock %}
